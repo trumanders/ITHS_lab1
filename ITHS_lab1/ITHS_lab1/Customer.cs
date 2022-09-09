@@ -186,7 +186,6 @@ namespace ITHS_lab1
         public Decimal calculateInterest(int index)
         {
             /* Balance * (interestRate / 100) */
-
             return thisCustomersAccounts[index].getBalance() * (Account.getInterestRate() / 100);
         }
     }
