@@ -6,30 +6,27 @@ using System.Threading.Tasks;
 
 namespace ITHS_lab1
 {
-    package andjox1;
-    import java.math.BigDecimal;
-    import java.util.ArrayList;
-
     /**
      * This class defines the customers. It has methods to make deposit, withdrawal, calculate
      * interest, and search for a customer's accounts, and hand out information about a customer's
      * accounts.
-     * @author Anders Johansson, andjox-1
+     * @author Anders Johansson, anders.johansson@iths.se
      */
+
     public class Customer
     {
-        private String fName;
-        private String lName;
-        private final String PERSONAL_NUMBER;
+        private string fName;
+        private string lName;
+        private string personalNumber;
 
     /* Contains a list of the customer's accounts */
-    private ArrayList<Account> thisCustomersAccounts = new ArrayList<>();
+    private List<Account> thisCustomersAccounts = new List<Account>();
 
-        public Customer(String fName, String lName, String persNum)
+        public Customer(string fName, string lName, string persNum)
         {
             this.fName = fName;
             this.lName = lName;
-            this.PERSONAL_NUMBER = persNum;
+            this.personalNumber = persNum;
         }
 
         /* SETTERS */
@@ -38,7 +35,7 @@ namespace ITHS_lab1
          * Sets the customer's first name
          * @param fName     The customer's first name
          */
-        public void setfName(String fName)
+        public void setfName(string fName)
         {
             this.fName = fName;
         }
@@ -47,27 +44,27 @@ namespace ITHS_lab1
          * Sets the customer's last name
          * @param lName     The customer's last name
          */
-        public void setlName(String lName)
+        public void setlName(string lName)
         {
             this.lName = lName;
         }
 
         /**
-         * Creates a new account in the account-ArrayList
+         * Creates a new account in the account-List
          */
         public void addAccount()
         {
-            this.thisCustomersAccounts.add(new Account());
+            this.thisCustomersAccounts.Add(new Account());
         }
 
 
         /**
-         * Deletes the account with the specified index in the account-ArrayList
+         * Deletes the account with the specified index in the account-List
          * @param index     The index of the account to be deleted
          */
         public void deleteAccount(int index)
         {
-            thisCustomersAccounts.remove(index);
+            thisCustomersAccounts.Remove(index);
         }
 
 
@@ -78,7 +75,7 @@ namespace ITHS_lab1
          */
         public void makeDeposit(int amount, int index)
         {
-            thisCustomersAccounts.get(index).deposit(amount);
+            thisCustomersAccounts[index].deposit(amount);
         }
 
 
@@ -89,7 +86,7 @@ namespace ITHS_lab1
          */
         public void makeWithdrawal(int amount, int index)
         {
-            thisCustomersAccounts.get(index).withdraw(amount);
+            thisCustomersAccounts[index].withdraw(amount);
         }
 
 
@@ -97,36 +94,36 @@ namespace ITHS_lab1
 
         /**
          * Get the customer's personal number
-         * @return String   The customer's personal number
+         * @return string   The customer's personal number
          */
-        public String getPERSONAL_NUMBER()
+        public string getPersonalNumber()
         {
-            return this.PERSONAL_NUMBER;
+            return this.personalNumber;
         }
 
         /**
          * Gets the customer's first name
-         * @return String   The customer's first name
+         * @return string   The customer's first name
          */
-        public String getfName()
+        public string getfName()
         {
             return this.fName;
         }
 
         /**
          * Gets the customer's last name
-         * @return String   The customer's last name
+         * @return string   The customer's last name
          */
-        public String getlName()
+        public string getlName()
         {
             return this.lName;
         }
 
         /**
          * Gets the customers first and last name.
-         * @return String   The customer's first and last name separated by space.
+         * @return string   The customer's first and last name separated by space.
          */
-        public String getFullName()
+        public string getFullName()
         {
             return getfName() + " " + getlName();
         }
@@ -138,7 +135,7 @@ namespace ITHS_lab1
          */
         public int getNumberOfAccounts()
         {
-            return thisCustomersAccounts.size();
+            return thisCustomersAccounts.Count;
         }
 
 
@@ -148,29 +145,29 @@ namespace ITHS_lab1
          */
         public int getAccountNumber(int index)
         {
-            return thisCustomersAccounts.get(index).getAccountNumber();
+            return thisCustomersAccounts[index].getAccountNumber();
         }
 
 
         /**
          * Gets the balance of all accounts of the customer
-         * @return ArrayList<BigDecimal>    List of the balances of the accounts
+         * @return List<Decimal>    List of the balances of the accounts
          */
-        public BigDecimal getAccountBalance(int index)
+        public Decimal getAccountBalance(int index)
         {
-            return thisCustomersAccounts.get(index).getBalance();
+            return thisCustomersAccounts[index].getBalance();
         }
 
 
         /**
-         * Checks if an account exists and gets it's index in the account ArrayList
+         * Checks if an account exists and gets it's index in the account List
          * @param accountNum    The account number to look up
-         * @return int          The index of the account in the account ArrayList. Returns -1 if the account was not found
+         * @return int          The index of the account in the account List. Returns -1 if the account was not found
          */
         public int searchForCustomerAccount(int accountNum)
         {
             int accountIndex = -1;
-            for (Account account : thisCustomersAccounts)
+            foreach (Account account in thisCustomersAccounts)
             {
                 accountIndex++;
                 if (account.getAccountNumber() == accountNum)
@@ -184,14 +181,13 @@ namespace ITHS_lab1
 
         /**
          * Calculates the interest on the account
-         * @return BigDecimal   The calculated interest
+         * @return Decimal   The calculated interest
          */
-        public BigDecimal calculateInterest(int index)
+        public Decimal calculateInterest(int index)
         {
             /* Balance * (interestRate / 100) */
 
-            return thisCustomersAccounts.get(index).getBalance().multiply(Account.getInterestRate().divide(new BigDecimal(100)));
+            return thisCustomersAccounts[index].getBalance() * (Account.getInterestRate() / 100);
         }
     }
-
 }
